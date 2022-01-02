@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'message.freezed.dart';
@@ -14,6 +17,12 @@ class Message with _$Message {
 
   factory Message.fromJson(Map<String, dynamic> json) =>
       _$MessageFromJson(json);
+
+  factory Message.fromRaw(Uint8List raw) =>
+      _$MessageFromJson(jsonDecode(String.fromCharCodes(raw)));
+
+  static final hi = Message(MessageType.hi);
+  static final bye = Message(MessageType.bye);
 }
 
 enum MessageType {
