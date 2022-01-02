@@ -24,11 +24,14 @@ class _$MessageTearOff {
 
   _Message call(
       MessageType messageType,
+      {@JsonKey(defaultValue: null, includeIfNull: false)
+          DataType? dataType,
       @JsonKey(defaultValue: null, includeIfNull: false)
-          Map<String, dynamic>? data) {
+          Map<String, dynamic>? data}) {
     return _Message(
       messageType,
-      data,
+      dataType: dataType,
+      data: data,
     );
   }
 
@@ -44,6 +47,8 @@ const $Message = _$MessageTearOff();
 mixin _$Message {
   MessageType get messageType => throw _privateConstructorUsedError;
   @JsonKey(defaultValue: null, includeIfNull: false)
+  DataType? get dataType => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: null, includeIfNull: false)
   Map<String, dynamic>? get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -57,6 +62,8 @@ abstract class $MessageCopyWith<$Res> {
       _$MessageCopyWithImpl<$Res>;
   $Res call(
       {MessageType messageType,
+      @JsonKey(defaultValue: null, includeIfNull: false)
+          DataType? dataType,
       @JsonKey(defaultValue: null, includeIfNull: false)
           Map<String, dynamic>? data});
 }
@@ -72,6 +79,7 @@ class _$MessageCopyWithImpl<$Res> implements $MessageCopyWith<$Res> {
   @override
   $Res call({
     Object? messageType = freezed,
+    Object? dataType = freezed,
     Object? data = freezed,
   }) {
     return _then(_value.copyWith(
@@ -79,6 +87,10 @@ class _$MessageCopyWithImpl<$Res> implements $MessageCopyWith<$Res> {
           ? _value.messageType
           : messageType // ignore: cast_nullable_to_non_nullable
               as MessageType,
+      dataType: dataType == freezed
+          ? _value.dataType
+          : dataType // ignore: cast_nullable_to_non_nullable
+              as DataType?,
       data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -95,6 +107,8 @@ abstract class _$MessageCopyWith<$Res> implements $MessageCopyWith<$Res> {
   $Res call(
       {MessageType messageType,
       @JsonKey(defaultValue: null, includeIfNull: false)
+          DataType? dataType,
+      @JsonKey(defaultValue: null, includeIfNull: false)
           Map<String, dynamic>? data});
 }
 
@@ -110,6 +124,7 @@ class __$MessageCopyWithImpl<$Res> extends _$MessageCopyWithImpl<$Res>
   @override
   $Res call({
     Object? messageType = freezed,
+    Object? dataType = freezed,
     Object? data = freezed,
   }) {
     return _then(_Message(
@@ -117,7 +132,11 @@ class __$MessageCopyWithImpl<$Res> extends _$MessageCopyWithImpl<$Res>
           ? _value.messageType
           : messageType // ignore: cast_nullable_to_non_nullable
               as MessageType,
-      data == freezed
+      dataType: dataType == freezed
+          ? _value.dataType
+          : dataType // ignore: cast_nullable_to_non_nullable
+              as DataType?,
+      data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>?,
@@ -129,7 +148,8 @@ class __$MessageCopyWithImpl<$Res> extends _$MessageCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Message implements _Message {
   const _$_Message(this.messageType,
-      @JsonKey(defaultValue: null, includeIfNull: false) this.data);
+      {@JsonKey(defaultValue: null, includeIfNull: false) this.dataType,
+      @JsonKey(defaultValue: null, includeIfNull: false) this.data});
 
   factory _$_Message.fromJson(Map<String, dynamic> json) =>
       _$$_MessageFromJson(json);
@@ -138,11 +158,14 @@ class _$_Message implements _Message {
   final MessageType messageType;
   @override
   @JsonKey(defaultValue: null, includeIfNull: false)
+  final DataType? dataType;
+  @override
+  @JsonKey(defaultValue: null, includeIfNull: false)
   final Map<String, dynamic>? data;
 
   @override
   String toString() {
-    return 'Message(messageType: $messageType, data: $data)';
+    return 'Message(messageType: $messageType, dataType: $dataType, data: $data)';
   }
 
   @override
@@ -152,6 +175,7 @@ class _$_Message implements _Message {
             other is _Message &&
             const DeepCollectionEquality()
                 .equals(other.messageType, messageType) &&
+            const DeepCollectionEquality().equals(other.dataType, dataType) &&
             const DeepCollectionEquality().equals(other.data, data));
   }
 
@@ -159,6 +183,7 @@ class _$_Message implements _Message {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(messageType),
+      const DeepCollectionEquality().hash(dataType),
       const DeepCollectionEquality().hash(data));
 
   @JsonKey(ignore: true)
@@ -175,13 +200,18 @@ class _$_Message implements _Message {
 abstract class _Message implements Message {
   const factory _Message(
       MessageType messageType,
+      {@JsonKey(defaultValue: null, includeIfNull: false)
+          DataType? dataType,
       @JsonKey(defaultValue: null, includeIfNull: false)
-          Map<String, dynamic>? data) = _$_Message;
+          Map<String, dynamic>? data}) = _$_Message;
 
   factory _Message.fromJson(Map<String, dynamic> json) = _$_Message.fromJson;
 
   @override
   MessageType get messageType;
+  @override
+  @JsonKey(defaultValue: null, includeIfNull: false)
+  DataType? get dataType;
   @override
   @JsonKey(defaultValue: null, includeIfNull: false)
   Map<String, dynamic>? get data;

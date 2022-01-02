@@ -8,7 +8,8 @@ part of 'message.dart';
 
 _$_Message _$$_MessageFromJson(Map<String, dynamic> json) => _$_Message(
       $enumDecode(_$MessageTypeEnumMap, json['messageType']),
-      json['data'] as Map<String, dynamic>?,
+      dataType: $enumDecodeNullable(_$DataTypeEnumMap, json['dataType']),
+      data: json['data'] as Map<String, dynamic>?,
     );
 
 Map<String, dynamic> _$$_MessageToJson(_$_Message instance) {
@@ -22,15 +23,21 @@ Map<String, dynamic> _$$_MessageToJson(_$_Message instance) {
     }
   }
 
+  writeNotNull('dataType', _$DataTypeEnumMap[instance.dataType]);
   writeNotNull('data', instance.data);
   return val;
 }
 
 const _$MessageTypeEnumMap = {
   MessageType.hi: 'hi',
-  MessageType.displayInfo: 'displayInfo',
-  MessageType.renameRequest: 'renameRequest',
-  MessageType.renameResponse: 'renameResponse',
-  MessageType.swapinfo: 'swapinfo',
+  MessageType.data: 'data',
+  MessageType.sameData: 'sameData',
   MessageType.bye: 'bye',
+};
+
+const _$DataTypeEnumMap = {
+  DataType.displayInfo: 'displayInfo',
+  DataType.renameRequest: 'renameRequest',
+  DataType.renameResponse: 'renameResponse',
+  DataType.swapinfo: 'swapinfo',
 };
