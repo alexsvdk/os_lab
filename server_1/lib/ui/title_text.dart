@@ -9,7 +9,7 @@ class TitleText extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final size = MediaQuery.of(context).size;
+    final size = appWindow.size;
     final title = ref.watch(titleStateProvider);
 
     useEffect(() {
@@ -18,9 +18,7 @@ class TitleText extends HookConsumerWidget {
       });
     }, [title]);
 
-    useEffect(() {
-      ref.read(windowSizeProvider).notifySizeChanged(size);
-    }, [size]);
+    ref.read(windowSizeProvider).notifySizeChanged(size);
 
     return Text(title);
   }

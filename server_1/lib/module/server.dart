@@ -49,7 +49,7 @@ class Server {
     _clients.add(client);
     client.listen(
       _handleData(client),
-      onError: () => _removeClient(client),
+      onError: (_) => _removeClient(client),
       onDone: () => _removeClient(client),
     );
   }
