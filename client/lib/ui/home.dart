@@ -24,22 +24,27 @@ class Home extends HookWidget {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.smart_display), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.memory), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Сервера'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.smart_display), label: 'Дисплей'),
+          BottomNavigationBarItem(icon: Icon(Icons.memory), label: 'Swap'),
         ],
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
         onTap: (i) => index.value = i,
         currentIndex: index.value,
       ),
       body: PageView(
+        physics: const NeverScrollableScrollPhysics(),
         controller: pageController,
         children: const [
           SettingsPage(),
           DiaplayPage(),
           SwapPage(),
-        ],
+        ]
+            .map((e) => Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: e,
+                ))
+            .toList(),
       ),
     );
   }

@@ -21,7 +21,20 @@ class SwapProvider {
   );
 
   void init() {
-    _timer = Timer.periodic(const Duration(seconds: 1), (_) {});
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) => _fetchSwap());
+    _serverSub = _server.messageStream.listen((e) {
+      if (e.value.messageType != MessageType.hi) {
+        return;
+      }
+      final swapInfo = _swapStream.valueOrNull;
+      if (swapInfo == null) {
+        return;
+      }
+      final message = Message(MessageType.data,
+          dataType: DataType.swapinfo, data: swapInfo.toJson());
+      final encoded = jsonEncode(message.toJson());
+      e.key.write(encoded);
+    });
   }
 
   Future<void> _fetchSwap() async {
@@ -43,13 +56,13 @@ class SwapProvider {
     bool eq = false;
     final nums = <String>[];
     out.split(' ').forEach((str) {
+      if (eq) {
+        nums.add(str);
+      }
       if (str == '=') {
         eq = true;
       } else {
         eq = false;
-      }
-      if (eq) {
-        nums.add(str);
       }
     });
     return SwapInfo(

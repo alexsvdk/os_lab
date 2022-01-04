@@ -16,16 +16,16 @@ class WindowSizeProvider {
   WindowSizeProvider(
     this._server,
   ) {
-    sizeStream.listen((size) {
+    sizeStream
+        .throttleTime(const Duration(milliseconds: 200),
+            leading: true, trailing: true)
+        .listen((size) {
       final displayInfo = DisplayInfo(size.width.toInt(), size.height.toInt());
       final message = Message(MessageType.data,
           dataType: DataType.displayInfo, data: displayInfo.toJson());
       _server.writeAll(message);
     });
-    _serverSub = _server.messageStream
-        .throttleTime(const Duration(milliseconds: 200),
-            leading: true, trailing: true)
-        .listen((data) {
+    _serverSub = _server.messageStream.listen((data) {
       final message = data.value;
       if (message.messageType == MessageType.hi) {
         final size = sizeStream.valueOrNull;

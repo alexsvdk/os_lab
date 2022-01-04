@@ -9,8 +9,19 @@ class SettingsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    return ServerConnectorWidget(
-      serverConnector: ref.watch(server1Provider),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        ServerConnectorWidget(
+          name: 'Сервер - 1',
+          serverConnector: ref.watch(server1Provider),
+        ),
+        ServerConnectorWidget(
+          defPort: '5899',
+          name: 'Сервер - 2',
+          serverConnector: ref.watch(server2Provider),
+        ),
+      ],
     );
   }
 }

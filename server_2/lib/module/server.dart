@@ -52,6 +52,8 @@ class Server {
       onError: (_) => _removeClient(client),
       onDone: () => _removeClient(client),
     );
+    serverState.state =
+        serverState.state?.copyWith(connection: _clients.length);
   }
 
   void writeAll(Message message) {
