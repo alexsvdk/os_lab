@@ -6,8 +6,8 @@ part 'swap_info.g.dart';
 @freezed
 class SwapInfo with _$SwapInfo {
   const factory SwapInfo(
-    int swapSize,
-    int freeSpace,
+    String swapSize,
+    String freeSpace,
   ) = _SwapInfo;
 
   factory SwapInfo.fromJson(Map<String, dynamic> json) =>

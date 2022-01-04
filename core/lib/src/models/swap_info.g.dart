@@ -7,8 +7,8 @@ part of 'swap_info.dart';
 // **************************************************************************
 
 _$_SwapInfo _$$_SwapInfoFromJson(Map<String, dynamic> json) => _$_SwapInfo(
-      json['swapSize'] as int,
-      json['freeSpace'] as int,
+      json['swapSize'] as String,
+      json['freeSpace'] as String,
     );
 
 Map<String, dynamic> _$$_SwapInfoToJson(_$_SwapInfo instance) =>

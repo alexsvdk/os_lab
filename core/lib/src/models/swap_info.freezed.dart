@@ -22,7 +22,7 @@ SwapInfo _$SwapInfoFromJson(Map<String, dynamic> json) {
 class _$SwapInfoTearOff {
   const _$SwapInfoTearOff();
 
-  _SwapInfo call(int swapSize, int freeSpace) {
+  _SwapInfo call(String swapSize, String freeSpace) {
     return _SwapInfo(
       swapSize,
       freeSpace,
@@ -39,8 +39,8 @@ const $SwapInfo = _$SwapInfoTearOff();
 
 /// @nodoc
 mixin _$SwapInfo {
-  int get swapSize => throw _privateConstructorUsedError;
-  int get freeSpace => throw _privateConstructorUsedError;
+  String get swapSize => throw _privateConstructorUsedError;
+  String get freeSpace => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -52,7 +52,7 @@ mixin _$SwapInfo {
 abstract class $SwapInfoCopyWith<$Res> {
   factory $SwapInfoCopyWith(SwapInfo value, $Res Function(SwapInfo) then) =
       _$SwapInfoCopyWithImpl<$Res>;
-  $Res call({int swapSize, int freeSpace});
+  $Res call({String swapSize, String freeSpace});
 }
 
 /// @nodoc
@@ -72,11 +72,11 @@ class _$SwapInfoCopyWithImpl<$Res> implements $SwapInfoCopyWith<$Res> {
       swapSize: swapSize == freezed
           ? _value.swapSize
           : swapSize // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       freeSpace: freeSpace == freezed
           ? _value.freeSpace
           : freeSpace // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
     ));
   }
 }
@@ -86,7 +86,7 @@ abstract class _$SwapInfoCopyWith<$Res> implements $SwapInfoCopyWith<$Res> {
   factory _$SwapInfoCopyWith(_SwapInfo value, $Res Function(_SwapInfo) then) =
       __$SwapInfoCopyWithImpl<$Res>;
   @override
-  $Res call({int swapSize, int freeSpace});
+  $Res call({String swapSize, String freeSpace});
 }
 
 /// @nodoc
@@ -107,11 +107,11 @@ class __$SwapInfoCopyWithImpl<$Res> extends _$SwapInfoCopyWithImpl<$Res>
       swapSize == freezed
           ? _value.swapSize
           : swapSize // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       freeSpace == freezed
           ? _value.freeSpace
           : freeSpace // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
     ));
   }
 }
@@ -125,9 +125,9 @@ class _$_SwapInfo implements _SwapInfo {
       _$$_SwapInfoFromJson(json);
 
   @override
-  final int swapSize;
+  final String swapSize;
   @override
-  final int freeSpace;
+  final String freeSpace;
 
   @override
   String toString() {
@@ -161,14 +161,14 @@ class _$_SwapInfo implements _SwapInfo {
 }
 
 abstract class _SwapInfo implements SwapInfo {
-  const factory _SwapInfo(int swapSize, int freeSpace) = _$_SwapInfo;
+  const factory _SwapInfo(String swapSize, String freeSpace) = _$_SwapInfo;
 
   factory _SwapInfo.fromJson(Map<String, dynamic> json) = _$_SwapInfo.fromJson;
 
   @override
-  int get swapSize;
+  String get swapSize;
   @override
-  int get freeSpace;
+  String get freeSpace;
   @override
   @JsonKey(ignore: true)
   _$SwapInfoCopyWith<_SwapInfo> get copyWith =>

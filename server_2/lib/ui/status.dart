@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:server_1/module/providers.dart';
+import 'package:server_2/module/providers.dart';
 
 class ServerStatus extends HookConsumerWidget {
   const ServerStatus({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, ref) {
-    final portController = useTextEditingController(text: '5898');
+    final portController = useTextEditingController(text: '5899');
     final serverState = ref.watch(serverStateProvider);
     final isActive = serverState != null;
     final leastOkPort = useState(5898);
@@ -32,7 +32,7 @@ class ServerStatus extends HookConsumerWidget {
               style: const TextStyle(color: Colors.white),
               child: Column(children: [
                 Text(
-                  'Сервер #1',
+                  'Сервер #2',
                   style: textTheme.headline3?.copyWith(color: Colors.white),
                 ),
                 Text('Состояние: ' + (isActive ? 'Включен' : 'Выключен')),
@@ -83,7 +83,7 @@ class ServerStatus extends HookConsumerWidget {
                       ref
                           .read(serverProvider)
                           .start(int.parse(portController.text));
-                      ref.read(windowSizeProvider);
+                      ref.read(swapProvider);
                     }
                   }),
             ],
