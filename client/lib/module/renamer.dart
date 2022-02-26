@@ -12,6 +12,7 @@ class Renamer {
   Renamer(this._serverConnector, this._stateHolder);
 
   Completer<RenameResponse>? _completer;
+  Timer? _timeout;
   late StreamSubscription _serverSub;
 
   void init() {
@@ -23,6 +24,8 @@ class Renamer {
       return;
     }
     final res = RenameResponse.fromJson(message.data!);
+    _timeout?.cancel();
+    _timeout = null;
     _completer?.complete(res);
     _completer = null;
     _stateHolder.state = AsyncData(res);
@@ -32,6 +35,11 @@ class Renamer {
     if (_completer == null) {
       _stateHolder.state = const AsyncLoading();
       _completer = Completer();
+      _timeout = Timer(const Duration(seconds: 1), () {
+        _completer?.completeError(TimeoutException(''));
+        _completer = null;
+        _timeout = null;
+      });
       final message = Message(MessageType.data,
           dataType: DataType.renameRequest, data: RenameRequest(name).toJson());
       _serverConnector.sendMessage(message);

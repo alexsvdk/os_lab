@@ -9,16 +9,14 @@ class TitleText extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final size = appWindow.size;
     final title = ref.watch(titleStateProvider);
+    ref.watch(titleChangerProvider);
 
     useEffect(() {
       doWhenWindowReady(() {
         appWindow.title = title;
       });
     }, [title]);
-
-    ref.read(windowSizeProvider).notifySizeChanged(size);
 
     return Text(title);
   }

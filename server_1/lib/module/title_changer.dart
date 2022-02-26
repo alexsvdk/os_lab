@@ -29,7 +29,8 @@ class TitleChanger {
                 data: const RenameResponse(false).toJson());
           }
           if (message != null) {
-            event.key.write(jsonEncode(message.toJson()));
+            final json = jsonEncode(message.toJson());
+            event.key.write(json);
           }
         });
 
